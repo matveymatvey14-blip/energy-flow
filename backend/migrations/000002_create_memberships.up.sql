@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS memberships (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    plan_name TEXT NOT NULL,
+    price INT NOT NULL CHECK (price > 0),
+    valid_until TIMESTAMPTZ NOT NULL,
+    purchased_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
